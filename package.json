@@ -1,0 +1,23 @@
+{
+  "name": "tool-box",
+  "version": "1.0.0",
+  "description": "tool-box app",
+  "main": "/client/public/index.html",
+  "scripts": {
+    "client": "cd client && yarn install && yarn build",
+    "server": "cd server && node index.js",
+    "start": "yarn server",
+    "full-install": "yarn install && concurrently \"cd server && yarn install \" \"cd client && yarn install \"",
+    "heroku-postbuild": "concurrently \"cd server && yarn \" \"cd client && yarn && yarn build\"",
+    "dev": "concurrently \"cd client && yarn build\" \"cd server && node index.js\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^5.3.0"
+  }
+}
