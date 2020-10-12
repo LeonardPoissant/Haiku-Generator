@@ -1,24 +1,40 @@
-import React, { useState, useEffect, useContext } from "react";
-
+import React, { useState, useEffect, useContext, useRef } from "react";
+import { useHistory } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
+import Draggable from "react-draggable";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import { HaikuContext } from "../HaikuContext/HaikuDataBaseContext";
 
-const HaikuGenerator = () => {
+import CreateHaikuDatabase from "./HaikuDataBase";
+
+const HaikuGenerator = (props) => {
   const { urlTitle, setHaikuDataBaseName, setUrlTitle } = useContext(
     HaikuContext
   );
   const [generatedHaiku, setGeneratedHaiku] = useState([]);
   const [animating, setAnimating] = useState(false);
+  const [isTrue, setTrue] = useState(false);
+  const nodeRef2 = React.useRef(null);
+  let history = useHistory();
+
+  const showDiv = props.isTrue;
+
+  console.log("PROPS", showDiv);
 
   //https://toolzbox.herokuapp.com/allHaikus/${haikuDb._id}
 
   /* useEffect(() => {
     setHaikuDataBaseName(sessionStorage.getItem("haikuDataBaseName"));
   }, []);*/
+  useEffect(() => {
+    if (isTrue) {
+      history.push(`/HaikuGenerator/${urlTitle}`);
+    }
+  }, [isTrue]);
 
   useEffect(() => {
-    async function fetchDbNames() {
+    /*async function fetchDbNames() {
       const UserDbName = await setHaikuDataBaseName(
         sessionStorage.getItem("haikuDataBaseName")
       );
@@ -26,7 +42,7 @@ const HaikuGenerator = () => {
         sessionStorage.getItem("haikuDataBaseName")
       );
     }
-    fetchDbNames();
+    fetchDbNames();*/
 
     fetch(`/allHaikus/${urlTitle}`, {
       mode: "cors",
@@ -37,9 +53,10 @@ const HaikuGenerator = () => {
         setAnimating(true);
       });
     setAnimating(false);
-  }, [urlTitle]);
+  }, []);
 
   const generateNewHaiku = async (e) => {
+    console.log("GENERATE");
     fetch(`/allHaikus/${urlTitle}`, {
       mode: "cors",
     })
@@ -50,36 +67,75 @@ const HaikuGenerator = () => {
       });
     setAnimating(false);
   };
+  const handleStart = (e, data) => {
+    console.log(data.y);
+    if (data.y > 125) {
+      setTrue(true);
+      console.log("IN GENERATOR", showDiv);
+    }
+  };
+  console.log("isTRUE2", isTrue);
 
   return (
-    <>
-      <HaikuWrapper>
-        <HaikuDisplay>
-          {animating ? (
-            generatedHaiku.map((verse, index) => {
-              return (
-                <HaikuVerse
-                  key={index}
-                  style={{
-                    animationDuration:
-                      index === 1 ? "3s" : index === 2 ? "4s" : "2s",
-                  }}
-                >
-                  {verse}
-                </HaikuVerse>
-              );
-            })
-          ) : (
-            <> </>
-          )}
-        </HaikuDisplay>
-      </HaikuWrapper>
-      <GenerateWrapper>
-        <Generate onClick={(e) => generateNewHaiku(e)}>Generate Haiku</Generate>
-      </GenerateWrapper>
-    </>
+    <Wrapper>
+      <>
+        <DraggableDiv>
+          <Draggable
+            axis="y"
+            handle=".handle"
+            defaultPosition={{ x: 0, y: 0 }}
+            position={null}
+            grid={[25, 25]}
+            scale={1}
+            onStart={handleStart}
+            onDrag={handleStart}
+          >
+            <div>
+              <ExpandMoreIcon
+                className="handle"
+                fontSize="large"
+              ></ExpandMoreIcon>
+            </div>
+          </Draggable>
+        </DraggableDiv>
+
+        <HaikuWrapper>
+          <HaikuDisplay>
+            {animating ? (
+              generatedHaiku.map((verse, index) => {
+                return (
+                  <HaikuVerse
+                    key={index}
+                    style={{
+                      animationDuration:
+                        index === 1 ? "3s" : index === 2 ? "4s" : "2s",
+                    }}
+                  >
+                    {verse}
+                  </HaikuVerse>
+                );
+              })
+            ) : (
+              <> </>
+            )}
+          </HaikuDisplay>
+        </HaikuWrapper>
+        <GenerateWrapper>
+          <Generate onClick={(e) => generateNewHaiku(e)}>
+            Generate Haiku
+          </Generate>
+        </GenerateWrapper>
+      </>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 const HaikuWrapper = styled.div`
   height: 80vh;
@@ -93,6 +149,11 @@ const HaikuDisplay = styled.div`
   padding: 70px;
 `;
 
+const DraggableDiv = styled.div`
+  @media screen and (min-width: 812px) {
+    display: none;
+  }
+`;
 const verseKeyFrames = keyframes`
 0% {
   opacity:0;

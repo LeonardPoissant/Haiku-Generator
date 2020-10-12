@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { HaikuContext } from "../HaikuContext/HaikuDataBaseContext";
+import Header from "./Header";
 
 const ToolBox = () => {
   const { haikuDataBaseName, urlTitle, onChange } = useContext(HaikuContext);
@@ -26,7 +27,7 @@ const ToolBox = () => {
           </GuideLine>
         </Wrapper>
         <Start
-          to={`/CreateMyHaikuDataBase/${urlTitle}`}
+          to={`/HaikuGenerator/${urlTitle}`}
           style={
             haikuDataBaseName === null
               ? { pointerEvents: "none" }
@@ -61,6 +62,9 @@ const DbName = styled.input`
   text-align: center;
   height: 20px;
   outline: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
 `;
 
 const GuideLine = styled.div`

@@ -1,7 +1,12 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Draggable from "react-draggable";
+import { useHistory } from "react-router-dom";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 
+import HaikuGenerator from "./HaikuGenerator";
 import { HaikuContext } from "../HaikuContext/HaikuDataBaseContext";
 
 const CreateHaikuDatabase = () => {
@@ -15,11 +20,41 @@ const CreateHaikuDatabase = () => {
     alert,
   } = useContext(HaikuContext);
 
+  let history = useHistory();
+
+  const [isMouseDown, setIsMouseDown] = useState(false);
+
+  const [active, setActive] = useState(false);
+  const [isTrue, setTrue] = useState(false);
+
+  const [isMoving, setIsmoving] = useState(false);
+  const nodeRef = React.useRef(null);
+
+  console.log("IS MOUSE DOWN", active);
+
   useEffect(() => {
     setHaikuDataBaseName(sessionStorage.getItem("haikuDataBaseName"));
-    console.log("DBNAMEIN EFFECTY", haikuDataBaseName);
   }, []);
-  console.log("ALERT", alert);
+
+  useEffect(() => {
+    if (isTrue) {
+      history.push(`/Generate/${urlTitle}`);
+    }
+  }, [isTrue]);
+
+  const handleStart = (e, data) => {
+    console.log(data.y);
+    if (data.y < -75) {
+      setTrue(true);
+      console.log(isTrue);
+      return;
+    }
+  };
+  const handleStop = (e, data) => {
+    if (data.y > 125) {
+    }
+  };
+
   return (
     <Wrapper>
       <DbName>{haikuDataBaseName}</DbName>
@@ -42,9 +77,25 @@ const CreateHaikuDatabase = () => {
         </Instructions>
         <SubmitHaikuDbButton type="submit">Submit Verse</SubmitHaikuDbButton>
       </HaikuDataBaseForm>
-      <ToGenerator to={`/HaikuGenerator/${urlTitle}`}>
-        Generate Haiku
-      </ToGenerator>
+      <DraggableDiv>
+        <Draggable
+          axis="y"
+          handle=".handle"
+          defaultPosition={{ x: 0, y: 0 }}
+          position={null}
+          grid={[25, 25]}
+          scale={1}
+          onStart={handleStart}
+          onDrag={handleStart}
+        >
+          <div>
+            <ExpandLessIcon
+              className="handle"
+              fontSize="large"
+            ></ExpandLessIcon>
+          </div>
+        </Draggable>
+      </DraggableDiv>
     </Wrapper>
   );
 };
@@ -55,6 +106,19 @@ const Wrapper = styled.div`
   justify-content: space-around;
   align-items: center;
   height: 80vh;
+  ${({ active }) =>
+    active &&
+    `
+    display: "none";
+    background: rgb(242, 242, 242);
+   
+  `};
+`;
+
+const DraggableDiv = styled.div`
+  @media screen and (min-width: 812px) {
+    display: none;
+  }
 `;
 
 const DbName = styled.div`
@@ -85,6 +149,9 @@ const VerseInput = styled.input`
   width: 400px;
   text-align: center;
   outline: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
 `;
 
 const Instructions = styled.div`
