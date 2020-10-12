@@ -46,7 +46,7 @@ const HaikuGenerator = (props) => {
 
     //murmuring-ravine-33143.herokuapp.com/createHaikus
 
-    https: fetch(
+    fetch(
       `https://murmuring-ravine-33143.herokuapp.com/allHaikus/${urlTitle}`,
       {
         mode: "cors",

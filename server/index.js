@@ -37,7 +37,7 @@ express()
   .use(
     cors({
       credentials: true,
-      origin: "https://toolzbox.herokuapp.com",
+      origin: "https://murmuring-ravine-33143.herokuapp.com",
       AccessControlAllowOrigin: "*",
     })
   )
