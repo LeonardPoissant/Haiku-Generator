@@ -44,9 +44,12 @@ const HaikuGenerator = (props) => {
     }
     fetchDbNames();*/
 
-    fetch(`/allHaikus/${urlTitle}`, {
-      mode: "cors",
-    })
+    fetch(
+      `https://murmuring-ravine-33143.herokuapp.com/createHaikus/${urlTitle}`,
+      {
+        mode: "cors",
+      }
+    )
       .then((res) => res.json())
       .then((randomHaiku) => {
         setGeneratedHaiku(randomHaiku.dataBaseArray);
