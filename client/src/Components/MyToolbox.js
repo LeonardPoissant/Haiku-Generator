@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { HaikuContext } from "../HaikuContext/HaikuDataBaseContext";
-import Header from "./Header";
+import Button from "@material-ui/core/Button";
 
 const ToolBox = () => {
   const { haikuDataBaseName, urlTitle, onChange } = useContext(HaikuContext);
@@ -13,7 +13,6 @@ const ToolBox = () => {
   return (
     <div>
       <ToolsWrapper>
-        <h1>Haiku Generator</h1>
         <Wrapper>
           <DbName
             type="text"
@@ -26,18 +25,19 @@ const ToolBox = () => {
             using until now.
           </GuideLine>
         </Wrapper>
-        <Start
-          to={`/HaikuGenerator/${urlTitle}`}
-          style={
-            haikuDataBaseName === null
-              ? { pointerEvents: "none" }
-              : { pointerEvents: "visible" }
-          }
-        >
-          <div>Start</div>
-        </Start>
+        <Button variant="contained" color="primary">
+          <Start
+            to={`/HaikuGenerator/${urlTitle}`}
+            style={
+              haikuDataBaseName === null || haikuDataBaseName.length === 0
+                ? { pointerEvents: "none" }
+                : { pointerEvents: "visible" }
+            }
+          >
+            Enter
+          </Start>
+        </Button>
         <div></div>
-        <About to={"/About"}>About</About>
       </ToolsWrapper>
     </div>
   );
@@ -48,7 +48,7 @@ const ToolsWrapper = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
 `;
 
 const Wrapper = styled.div`
@@ -65,10 +65,11 @@ const DbName = styled.input`
   border-top: none;
   border-left: none;
   border-right: none;
+  padding-bottom: 4px;
 `;
 
 const GuideLine = styled.div`
-  padding-top: 10px;
+  padding-top: 25px;
   color: rgb(204, 204, 204);
 `;
 
@@ -77,8 +78,9 @@ const Start = styled(Link)`
   align-items: stretch;
   justify-content: center;
   color: black;
-  text-decoration: underline;
-  font-size: 25px;
+  text-decoration: none;
+
+  font-size: 20px;
 `;
 
 const About = styled(Link)`

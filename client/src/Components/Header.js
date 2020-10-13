@@ -14,8 +14,6 @@ const Header = () => {
 
   const location = useLocation();
 
-  console.log("LOCATION", location.pathname);
-
   useEffect(() => {
     const getLocation = () => {
       if (location.pathname === `/HaikuGenerator/${urlTitle}`) {
@@ -30,7 +28,7 @@ const Header = () => {
           setGeneratorHeader(false),
           setCreatePageHeader(false)
         );
-      } else if (location.pathname === `/HaikuGenerator/Generate/${urlTitle}`) {
+      } else if (location.pathname === `/Generate/${urlTitle}`) {
         return (
           setMainPageHeader(false),
           setGeneratorHeader(false),
@@ -41,9 +39,6 @@ const Header = () => {
     getLocation();
   }, [location.pathname]);
 
-  console.log(generatorHeader);
-  console.log("CREATEPAGE", createPageHeader);
-
   return (
     <Wrapper>
       {location.pathname === `/HaikuGenerator/${urlTitle}` ? (
@@ -53,7 +48,7 @@ const Header = () => {
             <LinkTo>Tool-Box</LinkTo>
           </ChangePageWrapper>
           <ChangePageWrapper to={`/Generate/${urlTitle}`}>
-            <LinkTo>Create new haikus</LinkTo>
+            <LinkTo>Generate haikus</LinkTo>
             <ArrowForwardIcon />
           </ChangePageWrapper>
         </>
@@ -69,7 +64,7 @@ const Header = () => {
           </ChangePageWrapper>
         </>
       ) : !generatorHeader && mainPageHeader && !createPageHeader ? (
-        <div>Tool Box</div>
+        <h1>Haiku Generator</h1>
       ) : (
         <></>
       )}

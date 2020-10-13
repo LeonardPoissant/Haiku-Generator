@@ -69,10 +69,8 @@ const HaikuGenerator = (props) => {
     console.log(data.y);
     if (data.y > 125) {
       setTrue(true);
-      console.log("IN GENERATOR", showDiv);
     }
   };
-  console.log("isTRUE2", isTrue);
 
   return (
     <Wrapper>
@@ -141,6 +139,9 @@ const HaikuWrapper = styled.div`
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
+  @media screen and (max-width: 812px) {
+    width: 100%;
+  }
 `;
 
 const HaikuDisplay = styled.div`

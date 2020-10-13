@@ -155,8 +155,12 @@ const VerseInput = styled.input`
 `;
 
 const Instructions = styled.div`
+  padding-left: 25px;
   padding-bottom: 100px;
   color: rgb(204, 204, 204);
+  @media screen and (max-width: 812px) {
+    width: 100vw;
+  }
 `;
 
 const SubmitHaikuDbButton = styled.button`
