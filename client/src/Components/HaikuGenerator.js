@@ -46,12 +46,7 @@ const HaikuGenerator = (props) => {
 
     //murmuring-ravine-33143.herokuapp.com/createHaikus
 
-    fetch(
-      `https://murmuring-ravine-33143.herokuapp.com/allHaikus/${urlTitle}`,
-      {
-        mode: "cors",
-      }
-    )
+    fetch(`https://murmuring-ravine-33143.herokuapp.com/allHaikus/${urlTitle}`)
       .then((res) => res.json())
       .then((randomHaiku) => {
         setGeneratedHaiku(randomHaiku.dataBaseArray);
@@ -62,9 +57,7 @@ const HaikuGenerator = (props) => {
 
   const generateNewHaiku = async (e) => {
     console.log("GENERATE");
-    fetch(`/allHaikus/${urlTitle}`, {
-      mode: "cors",
-    })
+    fetch(`https://murmuring-ravine-33143.herokuapp.com/allHaikus/${urlTitle}`)
       .then((res) => res.json())
       .then((randomHaiku) => {
         setGeneratedHaiku(randomHaiku.dataBaseArray);
