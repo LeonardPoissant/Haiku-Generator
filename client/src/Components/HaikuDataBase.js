@@ -103,9 +103,11 @@ const CreateHaikuDatabase = () => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  height: 80vh;
+  @media screen and (max-width: 812px) {
+    overflow: hidden;
+  }
   ${({ active }) =>
     active &&
     `
@@ -115,11 +117,7 @@ const Wrapper = styled.div`
   `};
 `;
 
-const DraggableDiv = styled.div`
-  @media screen and (min-width: 812px) {
-    display: none;
-  }
-`;
+
 
 const DbName = styled.div`
   font-size: 25px;
@@ -131,6 +129,7 @@ const HaikuDataBaseForm = styled.form`
   justify-content: space-around;
   align-items: center;
   height: 300px;
+  margin-top:90px;
 `;
 
 const InputsWrapper = styled.div`
@@ -175,10 +174,17 @@ const SubmitHaikuDbButton = styled.button`
   }
 `;
 
-const ToGenerator = styled(Link)`
+const DraggableDiv = styled.div`
+margin-top:100px;
+  @media screen and (min-width: 812px) {
+    display: none;
+  }
+`;
+
+/*const ToGenerator = styled(Link)`
   color: black;
   text-decoration: underline;
   font-size: 25px;
-`;
+`;*/
 
 export default CreateHaikuDatabase;

@@ -64,7 +64,7 @@ const Header = () => {
           </ChangePageWrapper>
         </>
       ) : !generatorHeader && mainPageHeader && !createPageHeader ? (
-        <h1>Haiku Generator</h1>
+        <MobileTitle>Haiku Generator</MobileTitle>
       ) : (
         <></>
       )}
@@ -77,9 +77,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  @media screen and (max-width: 812px) {
-    display: none;
-  }
+ 
 `;
 
 const ChangePageWrapper = styled(Link)`
@@ -88,10 +86,20 @@ const ChangePageWrapper = styled(Link)`
   display: flex;
   padding-left: 5px;
   margin-left: 5px;
+  @media screen and (max-width: 812px) {
+    display: none;
+  }
 `;
 
 const LinkTo = styled.div`
   margin-top: 3px;
 `;
+
+const MobileTitle = styled.h1`
+@media screen and (max-width: 812px) {
+    display: inline;
+  }
+`;
+
 
 export default Header;

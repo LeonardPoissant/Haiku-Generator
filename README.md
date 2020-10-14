@@ -4,7 +4,7 @@ Haiku-Generator is a simple application created for a client using a MERN stack.
 
 <a href="https://gyazo.com/d599404299d046733074e184bc96385b"><img src="https://i.gyazo.com/d599404299d046733074e184bc96385b.gif" alt="Image from Gyazo" width="576"/></a>
 
-The requierements were to make a generator where users could create their own database, input verses to populate said database and display 3 lines chosen randomly following this design:
+The requierements were to make a generator where users could create their own database, generate 3 random lines and have the ability to manage their data following this design:
 
 ![Alt text](client/public/FIGMA.png)
 
@@ -12,7 +12,7 @@ The app needed to be accessible to anyone who wanted to play around with it, so 
 
 That version of the app is available here: https://toolzbox.herokuapp.com/
 
-I couldn't sell my own ideas so I decided afterwards to make my own design for both mobile and desktop uses.
+I couldn't sell my UI ideas so while keeping the design simple, I added some functionalities for a smoother experience.
 
 <a href="https://gyazo.com/aa924c42306c0b3979fc0208ec7fa0e9"><img src="https://i.gyazo.com/aa924c42306c0b3979fc0208ec7fa0e9.gif" alt="Image from Gyazo" width="760"/></a>
 

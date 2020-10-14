@@ -73,56 +73,60 @@ const HaikuGenerator = (props) => {
   };
 
   return (
-    <Wrapper>
-      <>
-        <DraggableDiv>
-          <Draggable
-            axis="y"
-            handle=".handle"
-            defaultPosition={{ x: 0, y: 0 }}
-            position={null}
-            grid={[25, 25]}
-            scale={1}
-            onStart={handleStart}
-            onDrag={handleStart}
-          >
+    <>
+     
+      <Wrapper>
+      <DraggableDiv>
+        <Draggable
+          axis="y"
+          handle=".handle"
+          defaultPosition={{ x: 0, y: 0 }}
+          position={null}
+          grid={[25, 25]}
+          scale={1}
+          onStart={handleStart}
+          onDrag={handleStart}
+        >
+          <div>
+            <ExpandMoreIcon
+              className="handle"
+              fontSize="large"
+            ></ExpandMoreIcon>
+          </div>
+        </Draggable>
+      </DraggableDiv>
+          <HaikuWrapper>
             <div>
-              <ExpandMoreIcon
-                className="handle"
-                fontSize="large"
-              ></ExpandMoreIcon>
-            </div>
-          </Draggable>
-        </DraggableDiv>
-
-        <HaikuWrapper>
-          <HaikuDisplay>
-            {animating ? (
-              generatedHaiku.map((verse, index) => {
-                return (
-                  <HaikuVerse
-                    key={index}
-                    style={{
-                      animationDuration:
-                        index === 1 ? "3s" : index === 2 ? "4s" : "2s",
-                    }}
-                  >
-                    {verse}
-                  </HaikuVerse>
-                );
-              })
-            ) : (
-              <> </>
-            )}
-          </HaikuDisplay>
-        </HaikuWrapper>
-        <GenerateWrapper>
+       
+      
+              {animating ? (
+                generatedHaiku.map((verse, index) => {
+                  return (
+                    <HaikuVerse
+                      key={index}
+                      style={{
+                        animationDuration:
+                          index === 1 ? "3s" : index === 2 ? "4s" : "2s",
+                      }}
+                    >
+                      {verse}
+                    </HaikuVerse>
+                  );
+                })
+              ) : (
+                <> </>
+              )}
+       </div>
+         
+          </HaikuWrapper>
+          <GenerateWrapper>
           <Generate onClick={(e) => generateNewHaiku(e)}>
             Generate Haiku
           </Generate>
         </GenerateWrapper>
-      </>
-    </Wrapper>
+      </Wrapper>
+      
+    </>
   );
 };
 
@@ -131,24 +135,31 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
+  @media screen and (max-width: 812px) {
+    overflow: hidden;
+  }
 `;
 
 const HaikuWrapper = styled.div`
-  height: 80vh;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
+ 
+  height:200px;
+
+
+  padding: 70px;
   @media screen and (max-width: 812px) {
     width: 100%;
   }
 `;
 
-const HaikuDisplay = styled.div`
-  padding: 70px;
-`;
+
 
 const DraggableDiv = styled.div`
+  display: flex;
   @media screen and (min-width: 812px) {
     display: none;
   }
@@ -180,16 +191,17 @@ const GenerateWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-flow: nowrap;
 `;
 
 const Generate = styled.button`
-  position: absolute;
-  padding: 10px;
+  flex-flow: nowrap;
+  // padding: 10px;
   border: none;
   outline: none;
   background-color: white;
   text-decoration: underline;
-  font-size: 25px;
+  //font-size: 25px;
   :hover {
     cursor: pointer;
   }

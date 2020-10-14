@@ -5,6 +5,7 @@ import ToolBox from "./MyToolbox";
 import HaikuGenerator from "./HaikuGenerator";
 import CreateHaikuDatabase from "./HaikuDataBase";
 import Header from "./Header";
+import Footer from "./Footer";
 import About from "./About";
 
 import "./App.css";
@@ -25,6 +26,7 @@ function App() {
             <HaikuGenerator />
           </Route>
         </Switch>
+        <Footer />
       </BrowserRouter>
     </div>
   );
