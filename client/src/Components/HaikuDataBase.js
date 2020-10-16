@@ -30,7 +30,7 @@ const CreateHaikuDatabase = () => {
   const [isMoving, setIsmoving] = useState(false);
   const nodeRef = React.useRef(null);
 
-  console.log("IS MOUSE DOWN", active);
+
 
   useEffect(() => {
     setHaikuDataBaseName(sessionStorage.getItem("haikuDataBaseName"));
@@ -57,7 +57,9 @@ const CreateHaikuDatabase = () => {
 
   return (
     <Wrapper>
+      <Link to={`/ManageDb/${urlTitle}`}>
       <DbName>{haikuDataBaseName}</DbName>
+      </Link>
       <HaikuDataBaseForm onSubmit={(e) => handleCreateHaikuDatabase(e)}>
         <InputsWrapper>
           <VerseWrapper>

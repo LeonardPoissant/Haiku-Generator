@@ -34,10 +34,10 @@ const HaikuDataBaseProvider = ({ children }) => {
     console.log("ARRAY", typeof haikuArray);
 
     //https://toolzbox.herokuapp.com/createHaikus
-    //murmuring-ravine-33143.herokuapp.com/createHaikus
+    // https:murmuring-ravine-33143.herokuapp.com/createHaikus
 
-    https: if (haikuArray.length >= 2) {
-      fetch("https://murmuring-ravine-33143.herokuapp.com/createHaikus", {
+    if (haikuArray.length >= 2) {
+      fetch("/createHaikus", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

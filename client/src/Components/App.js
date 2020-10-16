@@ -6,6 +6,7 @@ import HaikuGenerator from "./HaikuGenerator";
 import CreateHaikuDatabase from "./HaikuDataBase";
 import Header from "./Header";
 import Footer from "./Footer";
+import ManageDb from "./ManageDB"
 import About from "./About";
 
 import "./App.css";
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route path="/Generate/:id">
             <HaikuGenerator />
+          </Route>
+          <Route path="/ManageDb/:id">
+            <ManageDb />
           </Route>
         </Switch>
         <Footer />

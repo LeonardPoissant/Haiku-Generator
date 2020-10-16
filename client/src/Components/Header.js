@@ -52,7 +52,7 @@ const Header = () => {
             <ArrowForwardIcon />
           </ChangePageWrapper>
         </>
-      ) : !generatorHeader && !mainPageHeader && createPageHeader ? (
+      ) : location.pathname === `/Generate/${urlTitle}`? (
         <>
           <ChangePageWrapper to={`/HaikuGenerator/${urlTitle}`}>
             <ArrowBackIcon />
@@ -63,9 +63,19 @@ const Header = () => {
             <ArrowForwardIcon />
           </ChangePageWrapper>
         </>
-      ) : !generatorHeader && mainPageHeader && !createPageHeader ? (
+      ) : location.pathname === `/` ? (
         <MobileTitle>Haiku Generator</MobileTitle>
-      ) : (
+      ) :  location.pathname === `/ManageDb/${urlTitle}`? (
+        <>
+          <ChangePageWrapper to={`/HaikuGenerator/${urlTitle}`}>
+            <ArrowBackIcon />
+            <LinkTo>Generator</LinkTo>
+          </ChangePageWrapper>
+          <ChangePageWrapper to={"/"}>
+            <LinkTo>Tool-Box</LinkTo>
+            <ArrowForwardIcon />
+          </ChangePageWrapper>
+        </>): (
         <></>
       )}
     </Wrapper>
@@ -86,7 +96,7 @@ const ChangePageWrapper = styled(Link)`
   display: flex;
   padding-left: 5px;
   margin-left: 5px;
-  @media screen and (max-width: 812px) {
+   @media screen and (max-width: 812px) {
     display: none;
   }
 `;

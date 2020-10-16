@@ -47,7 +47,7 @@ const createHaikuDB = async (req, res) => {
 
 // We connect to the right DB using params and send back 3 verses from the haiku array.
 
-const getAllHaikus = async (req, res) => {
+const getRandomHaiku = async (req, res) => {
   const client = new MongoClient(uri, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
@@ -91,7 +91,77 @@ const getAllHaikus = async (req, res) => {
   }
 };
 
+const getDbInfo = async (req, res) => {
+  const client = new MongoClient(uri, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+  });
+  const { id } = req.params;
+  try {
+    await client.connect();
+    const db = client.db(id);
+    const dataBase = await db.collection("Haiku").find().toArray();
+    console.log(dataBase[0].haikuDataBaseName)
+    const dataBaseName = dataBase[0].haikuDataBaseName
+    const haikuArray =dataBase[0].haikuArray
+    res.status(201).json({
+      status: 201,
+      dataBaseName: dataBaseName,
+      haikuArray: haikuArray,
+    });
+  } catch (err) {
+    res.status(500).json({
+      data: dataBaseArray,
+      message: "Something went wrong",
+      err,
+    });
+  }
+};
+
+const deleteVerses = async (req, res)=>{
+  const client = new MongoClient(uri, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+  });
+  const data = req.body;
+
+  console.log(data)
+  const id = data.urlTitle
+  const deletedArray = data.deletedArray
+  try {
+    await client.connect();
+    const db = client.db(id);
+    const dataBase = await db.collection("Haiku").updateOne(
+      { haikuDataBaseName: id },
+      { $pull: { haikuArray: { $in: deletedArray } }},
+      { upsert: true }
+      )
+   
+    /*const myHaikuArray = dataBase[0].haikuArray
+    console.log("MY ArRAY", deletedArray)
+  const myNewArray = myHaikuArray.filter(val => !deletedArray.includes(val));
+
+  console.log("MY ArRAY", myNewArray)*/
+
+  console.log('DBASE',dataBase)
+  
+    
+    res.status(201).json({
+      status: 201,
+      dataBase:dataBase,
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: "Something went wrong",
+      err,
+    });
+  }
+
+}
+
 module.exports = {
   createHaikuDB,
-  getAllHaikus,
+  getRandomHaiku,
+  getDbInfo,
+  deleteVerses
 };
