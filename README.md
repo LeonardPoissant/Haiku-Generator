@@ -18,6 +18,8 @@ I couldn't sell my UI ideas :( , so while keeping the design simple, I added som
 
 <a href="https://gyazo.com/26ba27a78589053d60f164169277e2cf"><img src="https://i.gyazo.com/26ba27a78589053d60f164169277e2cf.gif" alt="Image from Gyazo" width="760"/></a>
 
+<a href="https://gyazo.com/eb4dbac498e57589c842ef39cdb1034e"><img src="https://i.gyazo.com/eb4dbac498e57589c842ef39cdb1034e.gif" alt="Image from Gyazo" width="1000"/></a>
+
 ## Running the app
 
 ## Fetching from the API
