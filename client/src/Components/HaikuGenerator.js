@@ -43,7 +43,7 @@ const HaikuGenerator = (props) => {
 
   const generateNewHaiku = async (e) => {
     console.log("GENERATE");
-    fetch(`https://murmuring-ravine-33143.herokuapp.com/${urlTitle}`)
+    fetch(`https://murmuring-ravine-33143.herokuapp.com/randomHaiku/${urlTitle}`)
       .then((res) => res.json())
       .then((randomHaiku) => {
         setGeneratedHaiku(randomHaiku.dataBaseArray);
