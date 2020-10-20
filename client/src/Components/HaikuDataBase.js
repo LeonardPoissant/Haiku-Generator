@@ -17,7 +17,6 @@ const CreateHaikuDatabase = () => {
     haikuArray,
     setHaikuArray,
     urlTitle,
-    alert,
   } = useContext(HaikuContext);
 
   let history = useHistory();
@@ -50,6 +49,7 @@ const CreateHaikuDatabase = () => {
       return;
     }
   };
+
   const handleStop = (e, data) => {
     if (data.y > 125) {
     }
@@ -107,6 +107,8 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+
   @media screen and (max-width: 812px) {
     overflow: hidden;
   }
@@ -153,11 +155,12 @@ const VerseInput = styled.input`
   border-top: none;
   border-left: none;
   border-right: none;
+  font-size:16px;
 `;
 
 const Instructions = styled.div`
   padding-left: 25px;
-  padding-bottom: 100px;
+  
   color: rgb(204, 204, 204);
   @media screen and (max-width: 812px) {
     width: 100vw;
@@ -165,7 +168,7 @@ const Instructions = styled.div`
 `;
 
 const SubmitHaikuDbButton = styled.button`
-  padding: 10px;
+ 
   border: none;
   outline: none;
   background-color: white;
@@ -177,11 +180,23 @@ const SubmitHaikuDbButton = styled.button`
 `;
 
 const DraggableDiv = styled.div`
+
+
 margin-top:100px;
+animation: myanimation 4s infinite;
+@keyframes myanimation{
+  0%{color:teal}
+  25%{color:white}
+  50%{color:teal}
+  75%{color:white}
+  100%{color:teal}
+  
+}
   @media screen and (min-width: 812px) {
     display: none;
   }
 `;
+
 
 /*const ToGenerator = styled(Link)`
   color: black;

@@ -66,6 +66,7 @@ const DbName = styled.input`
   border-left: none;
   border-right: none;
   padding-bottom: 4px;
+  font-size:16px;
 `;
 
 const GuideLine = styled.div`

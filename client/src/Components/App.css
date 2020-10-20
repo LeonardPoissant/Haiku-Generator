@@ -2,4 +2,5 @@
 
 .wrapper {
   font-family: "Roboto Mono", monospace;
+  overflow: hidden;
 }

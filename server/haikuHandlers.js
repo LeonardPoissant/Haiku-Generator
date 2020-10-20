@@ -123,32 +123,24 @@ const deleteVerses = async (req, res)=>{
     useUnifiedTopology: true,
     useNewUrlParser: true,
   });
-  const data = req.body;
 
-  console.log(data)
-  const id = data.urlTitle
-  const deletedArray = data.deletedArray
+  const {id } = req.params
+  const data = req.body;
+  const deletedArray = data[Object.keys(data)[0]]
+
+  console.log('delete', deletedArray)
   try {
     await client.connect();
     const db = client.db(id);
     const dataBase = await db.collection("Haiku").updateOne(
       { haikuDataBaseName: id },
       { $pull: { haikuArray: { $in: deletedArray } }},
-      { upsert: true }
-      )
-   
-    /*const myHaikuArray = dataBase[0].haikuArray
-    console.log("MY ArRAY", deletedArray)
-  const myNewArray = myHaikuArray.filter(val => !deletedArray.includes(val));
-
-  console.log("MY ArRAY", myNewArray)*/
-
-  console.log('DBASE',dataBase)
+      { upsert: true })
   
     
-    res.status(201).json({
-      status: 201,
-      dataBase:dataBase,
+    res.status(200).json({
+      status:200,
+      message:"Items have been deleted"
     });
   } catch (err) {
     res.status(500).json({

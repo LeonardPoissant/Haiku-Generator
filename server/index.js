@@ -15,7 +15,7 @@ const { createHaikuDB, getRandomHaiku, getDbInfo, deleteVerses } = require(path.
   "./haikuHandlers"
 ));
 
-const PORT = process.env.PORT || 4000;
+const PORT =  4000;
 
 express()
   .use(function (req, res, next) {
@@ -36,7 +36,7 @@ express()
   .use(express.urlencoded({ extended: false }))
   .use("/", express.static(__dirname + "../../client/build"))
 
-  //Create the Haiku DataBase
+  //Create the Haiku DataBase and push in new verses.
 
   .post("/createHaikus", createHaikuDB)
 
@@ -50,7 +50,7 @@ express()
 
   //Delete select verses
 
-  .delete("/delete", deleteVerses)
+  .delete("/delete/:id", deleteVerses)
 
   .get("/*", (req, res) => {
     res.sendFile(path.join(__dirname + "../../client/build/index.html"));

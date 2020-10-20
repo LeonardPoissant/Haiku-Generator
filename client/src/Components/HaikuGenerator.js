@@ -9,7 +9,7 @@ import { HaikuContext } from "../HaikuContext/HaikuDataBaseContext";
 import CreateHaikuDatabase from "./HaikuDataBase";
 
 const HaikuGenerator = (props) => {
-  const { urlTitle, setHaikuDataBaseName, setUrlTitle } = useContext(
+  const { urlTitle } = useContext(
     HaikuContext
   );
   const [generatedHaiku, setGeneratedHaiku] = useState([]);
@@ -20,13 +20,9 @@ const HaikuGenerator = (props) => {
 
   const showDiv = props.isTrue;
 
-  console.log("PROPS", showDiv);
 
   //https://toolzbox.herokuapp.com/allHaikus/${haikuDb._id}
 
-  /* useEffect(() => {
-    setHaikuDataBaseName(sessionStorage.getItem("haikuDataBaseName"));
-  }, []);*/
   useEffect(() => {
     if (isTrue) {
       history.push(`/HaikuGenerator/${urlTitle}`);
@@ -34,16 +30,6 @@ const HaikuGenerator = (props) => {
   }, [isTrue]);
 
   useEffect(() => {
-    /*async function fetchDbNames() {
-      const UserDbName = await setHaikuDataBaseName(
-        sessionStorage.getItem("haikuDataBaseName")
-      );
-      const MongoDbName = await setUrlTitle(
-        sessionStorage.getItem("haikuDataBaseName")
-      );
-    }
-    fetchDbNames();*/
-
     //`https://murmuring-ravine-33143.herokuapp.com/randomHaiku/${urlTitle}`
 
     fetch(`/randomHaiku/${urlTitle}`)
@@ -73,8 +59,6 @@ const HaikuGenerator = (props) => {
   };
 
   return (
-    <>
-     
       <Wrapper>
       <DraggableDiv>
         <Draggable
@@ -97,8 +81,6 @@ const HaikuGenerator = (props) => {
       </DraggableDiv>
           <HaikuWrapper>
             <div>
-       
-      
               {animating ? (
                 generatedHaiku.map((verse, index) => {
                   return (
@@ -117,7 +99,6 @@ const HaikuGenerator = (props) => {
                 <> </>
               )}
        </div>
-         
           </HaikuWrapper>
           <GenerateWrapper>
           <Generate onClick={(e) => generateNewHaiku(e)}>
@@ -125,8 +106,6 @@ const HaikuGenerator = (props) => {
           </Generate>
         </GenerateWrapper>
       </Wrapper>
-      
-    </>
   );
 };
 
@@ -160,6 +139,15 @@ const HaikuWrapper = styled.div`
 
 const DraggableDiv = styled.div`
   display: flex;
+  animation: myanimation 4s infinite;
+@keyframes myanimation{
+  0%{color:teal}
+  25%{color:white}
+  50%{color:teal}
+  75%{color:white}
+  100%{color:teal}
+  
+}
   @media screen and (min-width: 812px) {
     display: none;
   }
@@ -192,6 +180,7 @@ const GenerateWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-flow: nowrap;
+ padding-bottom:150px;
 `;
 
 const Generate = styled.button`

@@ -17,10 +17,11 @@ const Footer = () => {
 };
 
 const Wrapper = styled.div`
-position:absolute;
+position:relative;
+overflow:hidden;
 bottom:0;
 left:46.2%;
-//margin-left:px;
+
 @media screen and (min-width: 812px) {
     display: none;
   }

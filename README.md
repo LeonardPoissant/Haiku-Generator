@@ -12,7 +12,7 @@ The app needed to be accessible to anyone who wanted to play around with it, so 
 
 That version of the app is available here: https://toolzbox.herokuapp.com/
 
-I couldn't sell my UI ideas so while keeping the design simple, I added some functionalities for a smoother experience.
+I couldn't sell my UI ideas :( , so while keeping the design simple, I added some functionalities for smoother mobile and desktop experiences.
 
 <a href="https://gyazo.com/aa924c42306c0b3979fc0208ec7fa0e9"><img src="https://i.gyazo.com/aa924c42306c0b3979fc0208ec7fa0e9.gif" alt="Image from Gyazo" width="760"/></a>
 
@@ -48,7 +48,8 @@ fetch("https://toolzbox.herokuapp.com/createHaikus", {
 
 GET: https://toolzbox.herokuapp.com/randomHaiku/:id
 
-returns 3 random verses from a specific database.
+returns 3 random verses from a specific database.  
+Example:
 
 ```java
 fetch("https://toolzbox.herokuapp.com/randomHaiku/MyAwesomeHaikus")
@@ -69,12 +70,13 @@ fetch("https://toolzbox.herokuapp.com/randomHaiku/MyAwesomeHaikus")
 }
 ```
 
-GET: https://toolzbox.herokuapp.com/allVerses/:id
+GET: https://toolzbox.herokuapp.com/dbInfo/:id
 
-Returns all the information from a specific database
+Returns all the information from a specific database.  
+Example:
 
 ```java
-fetch("https://toolzbox.herokuapp.com/allVerses/MyAwesomeHaikus")
+fetch(`https://toolzbox.herokuapp.com/dbInfo/${MyAwesomeHaiku}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data)
@@ -96,5 +98,37 @@ fetch("https://toolzbox.herokuapp.com/allVerses/MyAwesomeHaikus")
       ]
     }
   ]
+}
+```
+
+DELETE: https://toolzbox.herokuapp.com/delete/:id
+
+Deletes selected verses.  
+Example:
+
+```java
+fetch(`https://toolzbox.herokuapp.com/delete/${MyAwesomeHaiku}`,
+{
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        mode: "cors",
+        body: JSON.stringify({
+          deletedArray,
+        }),
+      })
+        .then((res) => res.json())
+        .then((db) => {
+          console.log(db)
+        })
+```
+
+```java
+
+{
+  "status": 200
+  "message": "Items have been deleted"
 }
 ```

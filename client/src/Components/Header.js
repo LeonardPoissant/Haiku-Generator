@@ -43,39 +43,46 @@ const Header = () => {
     <Wrapper>
       {location.pathname === `/HaikuGenerator/${urlTitle}` ? (
         <>
+        <div></div>
           <ChangePageWrapper to={"/"}>
             <ArrowBackIcon />
-            <LinkTo>Tool-Box</LinkTo>
+            <LinkTo>Home</LinkTo>
           </ChangePageWrapper>
           <ChangePageWrapper to={`/Generate/${urlTitle}`}>
-            <LinkTo>Generate haikus</LinkTo>
+            <LinkTo>Generator</LinkTo>
             <ArrowForwardIcon />
           </ChangePageWrapper>
+          <div></div>
         </>
       ) : location.pathname === `/Generate/${urlTitle}`? (
         <>
+        <div></div>
           <ChangePageWrapper to={`/HaikuGenerator/${urlTitle}`}>
             <ArrowBackIcon />
-            <LinkTo>Generator</LinkTo>
+            <LinkTo>Add more verses</LinkTo>
           </ChangePageWrapper>
           <ChangePageWrapper to={"/"}>
-            <LinkTo>Tool-Box</LinkTo>
+            <LinkTo>Home</LinkTo>
             <ArrowForwardIcon />
           </ChangePageWrapper>
+          <div></div>
         </>
       ) : location.pathname === `/` ? (
         <MobileTitle>Haiku Generator</MobileTitle>
       ) :  location.pathname === `/ManageDb/${urlTitle}`? (
         <>
+        <div></div>
           <ChangePageWrapper to={`/HaikuGenerator/${urlTitle}`}>
             <ArrowBackIcon />
-            <LinkTo>Generator</LinkTo>
+            <LinkTo>Add more verses</LinkTo>
           </ChangePageWrapper>
-          <ChangePageWrapper to={"/"}>
-            <LinkTo>Tool-Box</LinkTo>
+          <ChangePageWrapper to={`/Generate/${urlTitle}`}>
+            <LinkTo>Generator</LinkTo>
             <ArrowForwardIcon />
           </ChangePageWrapper>
-        </>): (
+          <div></div>
+        </>
+        ): (
         <></>
       )}
     </Wrapper>
@@ -83,26 +90,23 @@ const Header = () => {
 };
 
 const Wrapper = styled.div`
-  height: 10vh;
+  height: 50px;
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
- 
+  justify-content: space-around;
+  align-items: center;
 `;
 
 const ChangePageWrapper = styled(Link)`
   text-decoration: none;
   color: black;
   display: flex;
-  padding-left: 5px;
-  margin-left: 5px;
    @media screen and (max-width: 812px) {
     display: none;
   }
 `;
 
 const LinkTo = styled.div`
-  margin-top: 3px;
+
 `;
 
 const MobileTitle = styled.h1`
