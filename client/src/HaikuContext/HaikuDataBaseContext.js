@@ -37,7 +37,7 @@ const HaikuDataBaseProvider = ({ children }) => {
     // https:murmuring-ravine-33143.herokuapp.com/createHaikus
 
     if (haikuArray.length >= 2) {
-      fetch("/createHaikus", {
+      fetch("https://murmuring-ravine-33143.herokuapp.com/createHaikus", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

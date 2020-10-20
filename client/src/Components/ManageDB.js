@@ -22,7 +22,7 @@ const [isDeleted, setIsDeleted] = useState(false)
 
 
 useEffect(()=>{
-    fetch(`/dbInfo/${urlTitle}`)
+    fetch(`https://murmuring-ravine-33143.herokuapp.com/dbInfo/${urlTitle}`)
       .then((res) => res.json())
       .then((data) => {
       console.log(data)
@@ -55,7 +55,7 @@ const handleUndo = (verse, index)=>{
 
 const submitDelete =()=>{
     if(deletedArray.length >0){
-    fetch(`/delete/${urlTitle}`, {
+    fetch(`https://murmuring-ravine-33143.herokuapp.com/delete/${urlTitle}`, {
         method: "DELETE",
         headers: {
           "content-type": "application/json",
