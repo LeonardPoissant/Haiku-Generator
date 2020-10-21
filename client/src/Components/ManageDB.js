@@ -45,13 +45,10 @@ const handleUndo = (verse, index)=>{
         ...prevState,
         [index]: !prevState[index]
     }));
-
-    const deletedVerseIndex = deletedArray.indexOf(verse);
+  const deletedVerseIndex = deletedArray.indexOf(verse);
     if (deletedVerseIndex !== -1) deletedArray.splice(deletedVerseIndex, 1);
     setDeletedArray(deletedArray);
 };
-
-
 
 const submitDelete =()=>{
     if(deletedArray.length >0){
@@ -80,19 +77,13 @@ const submitDelete =()=>{
     }
 };
 
-
-
 return(
     <>
-  
     <Title>{dataBaseName}</Title>
-    
-
     <ButtonWrapper>
     <SubmitDeletion onClick={(e)=>submitDelete()}>CONFIRM</SubmitDeletion>
 </ButtonWrapper>
 <Ul>
-
 {array.map((verse, index)=>{
     return(
         <VerseWrapper key={index}>
@@ -111,43 +102,29 @@ return(
     )
 })}
 </Ul>
-
 </>
 )
 }
 
-const Wrapper = styled.div`
-display:flex;
-align-items:center;
-justify-content:center; 
-`;
-
 const Title = styled.h1`
 text-align:center;
 `;
-
 const Ul = styled.ul`
 display:flex;
 list-style-type:none;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-
 `;
-
 const VerseWrapper = styled.div`
 display:flex;
 max-height:20px;
 max-width:400px;
 padding:6px;
-
 `;
-
 const Verse = styled.li`
-
 `;
 const DeleteUndoButton = styled.button`
-
 outline:none;
 border-style:none;
 background-color:white;
@@ -155,17 +132,8 @@ background-color:white;
     cursor:pointer;
 }
 `;
-
-const ScrollToBottom = styled.button`
-position:fixed;
-
-`;
-
 const ButtonWrapper = styled.div`
-
 `;
-
-
 
 const SubmitDeletion = styled.button`
 position:fixed;
@@ -173,7 +141,6 @@ position:fixed;
     margin-left:500px;
     margin-top:300px;
   }
-
 `;
 
 

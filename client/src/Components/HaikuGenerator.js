@@ -15,13 +15,7 @@ const HaikuGenerator = (props) => {
   const [generatedHaiku, setGeneratedHaiku] = useState([]);
   const [animating, setAnimating] = useState(false);
   const [isTrue, setTrue] = useState(false);
-  const nodeRef2 = React.useRef(null);
   let history = useHistory();
-
-  const showDiv = props.isTrue;
-
-
-
 
   useEffect(() => {
     if (isTrue) {
@@ -30,8 +24,6 @@ const HaikuGenerator = (props) => {
   }, [isTrue]);
 
   useEffect(() => {
-    //`https://murmuring-ravine-33143.herokuapp.com/randomHaiku/${urlTitle}`
-
     fetch(`https://murmuring-ravine-33143.herokuapp.com/randomHaiku/${urlTitle}`)
       .then((res) => res.json())
       .then((randomHaiku) => {
@@ -112,29 +104,21 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
   @media screen and (max-width: 812px) {
     overflow: hidden;
   }
 `;
-
 const HaikuWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
- 
   height:200px;
-
-
   padding: 70px;
   @media screen and (max-width: 812px) {
     width: 100%;
   }
 `;
-
-
-
 const DraggableDiv = styled.div`
   display: flex;
   animation: myanimation 4s infinite;
@@ -144,7 +128,6 @@ const DraggableDiv = styled.div`
   50%{color:teal}
   75%{color:white}
   100%{color:teal}
-  
 }
   @media screen and (min-width: 812px) {
     display: none;
@@ -166,32 +149,17 @@ const verseKeyFrames = keyframes`
   opacity:1;
 }
 `;
-
 const HaikuVerse = styled.div`
   padding: 5px;
   width: 100%;
   animation: ${verseKeyFrames} ease-in;
 `;
-
 const GenerateWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-flow: nowrap;
  padding-bottom:150px;
-`;
-
-const Generate = styled.button`
-  flex-flow: nowrap;
-  // padding: 10px;
-  border: none;
-  outline: none;
-  background-color: white;
-  text-decoration: underline;
-  //font-size: 25px;
-  :hover {
-    cursor: pointer;
-  }
 `;
 
 export default HaikuGenerator;

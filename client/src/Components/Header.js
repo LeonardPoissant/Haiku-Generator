@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
@@ -7,37 +7,8 @@ import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { HaikuContext } from "../HaikuContext/HaikuDataBaseContext";
 
 const Header = () => {
-  const [mainPageHeader, setMainPageHeader] = useState(false);
-  const [generatorHeader, setGeneratorHeader] = useState(false);
-  const [createPageHeader, setCreatePageHeader] = useState(false);
   const { urlTitle } = useContext(HaikuContext);
-
   const location = useLocation();
-
-  useEffect(() => {
-    const getLocation = () => {
-      if (location.pathname === `/HaikuGenerator/${urlTitle}`) {
-        return (
-          setMainPageHeader(false),
-          setGeneratorHeader(true),
-          setCreatePageHeader(false)
-        );
-      } else if (location.pathname === "/") {
-        return (
-          setMainPageHeader(true),
-          setGeneratorHeader(false),
-          setCreatePageHeader(false)
-        );
-      } else if (location.pathname === `/Generate/${urlTitle}`) {
-        return (
-          setMainPageHeader(false),
-          setGeneratorHeader(false),
-          setCreatePageHeader(true)
-        );
-      }
-    };
-    getLocation();
-  }, [location.pathname]);
 
   return (
     <Wrapper className='MYSTERYDIV'>
@@ -98,17 +69,13 @@ const Wrapper = styled.div`
     display: none;
   }
 `;
-
 const ChangePageWrapper = styled(Link)`
   text-decoration: none;
   color: black;
   display: flex;
 `;
-
 const LinkTo = styled.div`
-
 `;
-
 const MobileTitle = styled.h1`
 @media screen and (max-width: 812px) {
     display: inline;

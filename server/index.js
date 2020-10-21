@@ -48,7 +48,7 @@ express()
 
   .get("/dbInfo/:id", getDbInfo)
 
-  //Delete select verses
+  //Delete selected verses
 
   .delete("/delete/:id", deleteVerses)
 

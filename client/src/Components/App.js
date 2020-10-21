@@ -7,7 +7,6 @@ import CreateHaikuDatabase from "./HaikuDataBase";
 import Header from "./Header";
 import Footer from "./Footer";
 import ManageDb from "./ManageDB"
-import About from "./About";
 
 import "./App.css";
 

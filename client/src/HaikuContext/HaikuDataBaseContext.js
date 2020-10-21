@@ -15,10 +15,7 @@ const HaikuDataBaseProvider = ({ children }) => {
     window.sessionStorage.setItem("haikuDataBaseName", haikuDataBaseName);
   };
 
-  //MOVE THE USEFFECT BACK TO 2ND AND 3RD PAGE SO ON MAIN PAGE WE CAN CLEAR ON REFRESH.
-  /*useEffect(() => {
-    setHaikuDataBaseName(sessionStorage.getItem("haikuDataBaseName"));
-  });*/
+
 
   const onChange = (e) => {
     setHaikuDataBaseName(e);
@@ -30,11 +27,6 @@ const HaikuDataBaseProvider = ({ children }) => {
     e.stopPropagation();
     e.preventDefault();
     setUrlTitle(urlTitle);
-
-    console.log("ARRAY", typeof haikuArray);
-
-    //https://toolzbox.herokuapp.com/createHaikus
-    // https:murmuring-ravine-33143.herokuapp.com/createHaikus
 
     if (haikuArray.length >= 2) {
       fetch("https://murmuring-ravine-33143.herokuapp.com/createHaikus", {
@@ -51,7 +43,6 @@ const HaikuDataBaseProvider = ({ children }) => {
       })
         .then((res) => res.json())
         .then((db) => {
-          //setHaikuDataBaseName("");
           setHaikuArray([]);
           setHaikuDb(db);
         })

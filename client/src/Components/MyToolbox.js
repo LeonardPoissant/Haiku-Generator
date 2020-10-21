@@ -50,13 +50,11 @@ const ToolsWrapper = styled.div`
   align-items: center;
   height: 80vh;
 `;
-
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
-
 const DbName = styled.input`
   width: 300px;
   text-align: center;
@@ -68,12 +66,10 @@ const DbName = styled.input`
   padding-bottom: 4px;
   font-size:16px;
 `;
-
 const GuideLine = styled.div`
   padding-top: 25px;
   color: rgb(204, 204, 204);
 `;
-
 const Start = styled(Link)`
   display: flex;
   align-items: stretch;
@@ -83,9 +79,5 @@ const Start = styled(Link)`
   font-size: 20px;
 `;
 
-const About = styled(Link)`
-  color: black;
-  text-decoration: underline;
-  font-size: 15px;
-`;
+
 export default ToolBox;

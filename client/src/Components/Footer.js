@@ -1,9 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
-import { Icon, InlineIcon } from "@iconify/react";
-import homeCircleOutline from "@iconify/icons-mdi/home-circle-outline";
+import { Icon } from "@iconify/react";
 import homeCircle from "@iconify/icons-mdi/home-circle";
 
 const Footer = () => {
@@ -21,7 +19,6 @@ position:relative;
 overflow:hidden;
 bottom:0;
 left:46.2%;
-
 @media screen and (min-width: 812px) {
     display: none;
   }

@@ -91,6 +91,8 @@ const getRandomHaiku = async (req, res) => {
   }
 };
 
+// We connect to the right DB using params and send back all that db's info.
+
 const getDbInfo = async (req, res) => {
   const client = new MongoClient(uri, {
     useUnifiedTopology: true,
@@ -118,6 +120,8 @@ const getDbInfo = async (req, res) => {
   }
 };
 
+//Delete's an array of verses in the corresponding db. 
+
 const deleteVerses = async (req, res)=>{
   const client = new MongoClient(uri, {
     useUnifiedTopology: true,
@@ -127,8 +131,6 @@ const deleteVerses = async (req, res)=>{
   const {id } = req.params
   const data = req.body;
   const deletedArray = data[Object.keys(data)[0]]
-
-  console.log('delete', deletedArray)
   try {
     await client.connect();
     const db = client.db(id);
@@ -136,8 +138,6 @@ const deleteVerses = async (req, res)=>{
       { haikuDataBaseName: id },
       { $pull: { haikuArray: { $in: deletedArray } }},
       { upsert: true })
-  
-    
     res.status(200).json({
       status:200,
       message:"Items have been deleted"
