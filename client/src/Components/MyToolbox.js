@@ -78,9 +78,8 @@ const Start = styled(Link)`
   display: flex;
   align-items: stretch;
   justify-content: center;
-  color: black;
   text-decoration: none;
-
+  color:white;
   font-size: 20px;
 `;
 

@@ -40,10 +40,10 @@ const Header = () => {
   }, [location.pathname]);
 
   return (
-    <Wrapper>
+    <Wrapper className='MYSTERYDIV'>
       {location.pathname === `/HaikuGenerator/${urlTitle}` ? (
         <>
-        <div></div>
+        <div className='MYSTERYDIV'></div>
           <ChangePageWrapper to={"/"}>
             <ArrowBackIcon />
             <LinkTo>Home</LinkTo>
@@ -56,7 +56,7 @@ const Header = () => {
         </>
       ) : location.pathname === `/Generate/${urlTitle}`? (
         <>
-        <div></div>
+        <div className='MYSTERYDIV'></div>
           <ChangePageWrapper to={`/HaikuGenerator/${urlTitle}`}>
             <ArrowBackIcon />
             <LinkTo>Add more verses</LinkTo>
@@ -94,15 +94,15 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  @media screen and (max-width: 812px) {
+    display: none;
+  }
 `;
 
 const ChangePageWrapper = styled(Link)`
   text-decoration: none;
   color: black;
   display: flex;
-   @media screen and (max-width: 812px) {
-    display: none;
-  }
 `;
 
 const LinkTo = styled.div`

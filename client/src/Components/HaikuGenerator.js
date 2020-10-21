@@ -6,7 +6,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import { HaikuContext } from "../HaikuContext/HaikuDataBaseContext";
 
-import CreateHaikuDatabase from "./HaikuDataBase";
+import Button from "@material-ui/core/Button";
 
 const HaikuGenerator = (props) => {
   const { urlTitle } = useContext(
@@ -101,9 +101,7 @@ const HaikuGenerator = (props) => {
        </div>
           </HaikuWrapper>
           <GenerateWrapper>
-          <Generate onClick={(e) => generateNewHaiku(e)}>
-            Generate Haiku
-          </Generate>
+            <Button variant="contained" color="primary" onClick={(e) => generateNewHaiku(e)}> Generate Haiku</Button>
         </GenerateWrapper>
       </Wrapper>
   );

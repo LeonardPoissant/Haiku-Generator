@@ -9,6 +9,8 @@ import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import HaikuGenerator from "./HaikuGenerator";
 import { HaikuContext } from "../HaikuContext/HaikuDataBaseContext";
 
+import Button from "@material-ui/core/Button";
+
 const CreateHaikuDatabase = () => {
   const {
     handleCreateHaikuDatabase,
@@ -57,9 +59,12 @@ const CreateHaikuDatabase = () => {
 
   return (
     <Wrapper>
-      <Link to={`/ManageDb/${urlTitle}`}>
+      <MobileHeader className='W000TTTTTTTT'>
+      <ToDataBase to={`/ManageDb/${urlTitle}`}>
       <DbName>{haikuDataBaseName}</DbName>
-      </Link>
+      </ToDataBase>
+      </MobileHeader>
+      <Instructions>Click on your database's name to edit it</Instructions>
       <HaikuDataBaseForm onSubmit={(e) => handleCreateHaikuDatabase(e)}>
         <InputsWrapper>
           <VerseWrapper>
@@ -75,9 +80,10 @@ const CreateHaikuDatabase = () => {
         </InputsWrapper>
         <Instructions>
           Verses should be between 2 and 28 characters long.. Submit at least 3
-          different verses
+          different verses. Swipe the arrow up to generate a haiku.
         </Instructions>
-        <SubmitHaikuDbButton type="submit">Submit Verse</SubmitHaikuDbButton>
+        <Button type="submit" variant="contained" color="primary" >Submit Verse</Button>
+        
       </HaikuDataBaseForm>
       <DraggableDiv>
         <Draggable
@@ -198,10 +204,15 @@ animation: myanimation 4s infinite;
 `;
 
 
-/*const ToGenerator = styled(Link)`
+const ToDataBase = styled(Link)`
   color: black;
   text-decoration: underline;
-  font-size: 25px;
-`;*/
+  top:0;
+`;
+const MobileHeader = styled.div`
+@media screen and (min-width: 812px) {
+    display: none;
+  }`;
+
 
 export default CreateHaikuDatabase;

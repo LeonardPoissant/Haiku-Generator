@@ -74,6 +74,7 @@ const submitDelete =()=>{
         .catch((err) => {
           console.log(err);
         })
+        history.push(`/Generate/${urlTitle}`)
     } else{
         console.log("nothing to delete")
     }
