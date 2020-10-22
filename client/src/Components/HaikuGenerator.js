@@ -3,13 +3,14 @@ import { useHistory } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import Draggable from "react-draggable";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import Button from "@material-ui/core/Button";
 
 import { HaikuContext } from "../HaikuContext/HaikuDataBaseContext";
 
-import Button from "@material-ui/core/Button";
 
-const HaikuGenerator = (props) => {
-  const { urlTitle } = useContext(
+
+const HaikuGenerator = () => {
+  const { haikuDataBaseName, setHaikuDataBaseName } = useContext(
     HaikuContext
   );
   const [generatedHaiku, setGeneratedHaiku] = useState([]);
@@ -18,24 +19,29 @@ const HaikuGenerator = (props) => {
   let history = useHistory();
 
   useEffect(() => {
+    setHaikuDataBaseName(sessionStorage.getItem("haikuDataBaseName"));
+  }, []);
+
+  useEffect(() => {
     if (isTrue) {
-      history.push(`/HaikuGenerator/${urlTitle}`);
+      history.push(`/HaikuGenerator/${haikuDataBaseName}`);
     }
   }, [isTrue]);
 
   useEffect(() => {
-    fetch(`https://murmuring-ravine-33143.herokuapp.com/randomHaiku/${urlTitle}`)
+    fetch(`https://murmuring-ravine-33143.herokuapp.com/randomHaiku/${haikuDataBaseName}`)
       .then((res) => res.json())
       .then((randomHaiku) => {
         setGeneratedHaiku(randomHaiku.dataBaseArray);
         setAnimating(true);
+        console.log(randomHaiku)
       });
     setAnimating(false);
   }, []);
 
   const generateNewHaiku = async (e) => {
     console.log("GENERATE");
-    fetch(`https://murmuring-ravine-33143.herokuapp.com/randomHaiku/${urlTitle}`)
+    fetch(`https://murmuring-ravine-33143.herokuapp.com/randomHaiku/${haikuDataBaseName}`)
       .then((res) => res.json())
       .then((randomHaiku) => {
         setGeneratedHaiku(randomHaiku.dataBaseArray);

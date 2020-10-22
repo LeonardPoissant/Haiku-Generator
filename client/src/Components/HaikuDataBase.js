@@ -22,17 +22,13 @@ const CreateHaikuDatabase = () => {
   let history = useHistory();
   const [isTrue, setTrue] = useState(false);
 
-  
-
-
-
   useEffect(() => {
     setHaikuDataBaseName(sessionStorage.getItem("haikuDataBaseName"));
   }, []);
 
   useEffect(() => {
     if (isTrue) {
-      history.push(`/Generate/${urlTitle}`);
+      history.push(`/Generate/${haikuDataBaseName}`);
     }
   }, [isTrue]);
 
@@ -53,7 +49,7 @@ const CreateHaikuDatabase = () => {
   return (
     <Wrapper>
     
-      <ToDataBase to={`/ManageDb/${urlTitle}`}>
+      <ToDataBase to={`/ManageDb/${haikuDataBaseName}`}>
       <DbName>{haikuDataBaseName}</DbName>
       </ToDataBase>
     

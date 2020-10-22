@@ -8,7 +8,7 @@ import { HaikuContext } from "../HaikuContext/HaikuDataBaseContext";
 import Button from "@material-ui/core/Button";
 
 const ToolBox = () => {
-  const { haikuDataBaseName, urlTitle, onChange } = useContext(HaikuContext);
+  const { haikuDataBaseName, onChange } = useContext(HaikuContext);
 
   return (
     <div>
@@ -27,7 +27,7 @@ const ToolBox = () => {
         </Wrapper>
         <Button variant="contained" color="primary">
           <Start
-            to={`/HaikuGenerator/${urlTitle}`}
+            to={`/HaikuGenerator/${haikuDataBaseName}`}
             style={
               haikuDataBaseName === null || haikuDataBaseName.length === 0
                 ? { pointerEvents: "none" }

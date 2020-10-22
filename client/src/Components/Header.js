@@ -7,28 +7,28 @@ import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { HaikuContext } from "../HaikuContext/HaikuDataBaseContext";
 
 const Header = () => {
-  const { urlTitle } = useContext(HaikuContext);
+  const { haikuDataBaseName } = useContext(HaikuContext);
   const location = useLocation();
 
   return (
     <Wrapper className='MYSTERYDIV'>
-      {location.pathname === `/HaikuGenerator/${urlTitle}` ? (
+      {location.pathname === `/HaikuGenerator/${haikuDataBaseName}` ? (
         <>
         <div className='MYSTERYDIV'></div>
           <ChangePageWrapper to={"/"}>
             <ArrowBackIcon />
             <LinkTo>Home</LinkTo>
           </ChangePageWrapper>
-          <ChangePageWrapper to={`/Generate/${urlTitle}`}>
+          <ChangePageWrapper to={`/Generate/${haikuDataBaseName}`}>
             <LinkTo>Generator</LinkTo>
             <ArrowForwardIcon />
           </ChangePageWrapper>
           <div></div>
         </>
-      ) : location.pathname === `/Generate/${urlTitle}`? (
+      ) : location.pathname === `/Generate/${haikuDataBaseName}`? (
         <>
         <div className='MYSTERYDIV'></div>
-          <ChangePageWrapper to={`/HaikuGenerator/${urlTitle}`}>
+          <ChangePageWrapper to={`/HaikuGenerator/${haikuDataBaseName}`}>
             <ArrowBackIcon />
             <LinkTo>Add more verses</LinkTo>
           </ChangePageWrapper>
@@ -40,14 +40,14 @@ const Header = () => {
         </>
       ) : location.pathname === `/` ? (
         <MobileTitle>Haiku Generator</MobileTitle>
-      ) :  location.pathname === `/ManageDb/${urlTitle}`? (
+      ) :  location.pathname === `/ManageDb/${haikuDataBaseName}`? (
         <>
         <div></div>
-          <ChangePageWrapper to={`/HaikuGenerator/${urlTitle}`}>
+          <ChangePageWrapper to={`/HaikuGenerator/${haikuDataBaseName}`}>
             <ArrowBackIcon />
             <LinkTo>Add more verses</LinkTo>
           </ChangePageWrapper>
-          <ChangePageWrapper to={`/Generate/${urlTitle}`}>
+          <ChangePageWrapper to={`/Generate/${haikuDataBaseName}`}>
             <LinkTo>Generator</LinkTo>
             <ArrowForwardIcon />
           </ChangePageWrapper>

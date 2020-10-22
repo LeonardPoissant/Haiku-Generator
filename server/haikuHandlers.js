@@ -19,6 +19,8 @@ const createHaikuDB = async (req, res) => {
   let haikuArray = [];
   haikuArray.push(haikuString);
 
+  console.log("here")
+
   try {
     await client.connect();
     const db = client.db(haikuDataBaseName);
@@ -53,6 +55,7 @@ const getRandomHaiku = async (req, res) => {
     useNewUrlParser: true,
   });
   const { id } = req.params;
+  console.log("here")
 
   console.log({ id });
   try {
