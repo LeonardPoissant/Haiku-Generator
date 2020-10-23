@@ -35,7 +35,9 @@ useEffect(()=>{
       setArray(data.haikuArray)
       });
       console.log(isDeleted)
-},[haikuDataBaseName]);
+},[isDeleted]);
+console.log('ARRAY',array)
+
 
 const handleDelete =(verse, index)=>{
     setIsClicked(prevState => ({
@@ -55,7 +57,10 @@ const handleUndo = (verse, index)=>{
     setDeletedArray(deletedArray);
 };
 
+//https://murmuring-ravine-33143.herokuapp.com
+
 const submitDelete =()=>{
+    console.log("im here")
     if(deletedArray.length >0){
     fetch(`https://murmuring-ravine-33143.herokuapp.com/db/delete/${haikuDataBaseName}`, {
         method: "DELETE",
@@ -76,7 +81,7 @@ const submitDelete =()=>{
         .catch((err) => {
           console.log(err);
         })
-        history.push(`/Generate/${haikuDataBaseName}`)
+       // history.push(`/Generate/${haikuDataBaseName}`)
     } else{
         console.log("nothing to delete")
     }

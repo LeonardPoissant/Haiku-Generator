@@ -143,25 +143,21 @@ let app = express()
   //Delete selected verses from a specific document.
 
   app.delete("/db/delete/:id", async (req, res)=>{
-  const client = new MongoClient(uri, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-  });
-
   const { id } = req.params
   const data = req.body;
   console.log('DATA',data)
   const deletedArray = data[Object.keys(data)[0]]
+
+  console.log('DELETE',deletedArray)
   try {
-    await client.connect();
-    const db = client.db(id);
-    const dataBase = await db.collection("Haiku").updateOne(
+    const dataBase = await db.collection(id).updateOne(
       { haikuDataBaseName: id },
       { $pull: { haikuArray: { $in: deletedArray } }},
       { upsert: true })
+      console.log(dataBase)
     res.status(200).json({
       status:200,
-      message:"Items have been deleted"
+      message:"n verses deleted",
     });
   } catch (err) {
     res.status(500).json({
