@@ -53,7 +53,7 @@ let app = express()
 
   //Create/find a document and push new verses in the haikuArray.
 
-  app.post("/createHaikus/:id",  async function (req, res){
+  app.post("/createHaikus/:id",  async (req, res) =>{
     const {id} = req.params;
     const haikuDataBase = req.body;
     const haikuString = haikuDataBase.haikuArray;
@@ -83,7 +83,7 @@ let app = express()
 
     //Get all the verses from a specific collection
 
-  app.get("/dbInfo/:id", async (req, res) => {
+  app.get("/db/:id", async (req, res) => {
     const { id } = req.params;
     try {
       const dataBase = await db.collection(id).find().toArray();

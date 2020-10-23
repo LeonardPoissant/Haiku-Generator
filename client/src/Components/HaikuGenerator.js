@@ -29,7 +29,7 @@ const HaikuGenerator = () => {
   }, [isTrue]);
 
   useEffect(() => {
-    fetch(`https://murmuring-ravine-33143.herokuapp.com/randomHaiku/${haikuDataBaseName}`)
+    fetch(`https://murmuring-ravine-33143.herokuapp.com/db/randomHaiku/${haikuDataBaseName}`)
       .then((res) => res.json())
       .then((randomHaiku) => {
         setGeneratedHaiku(randomHaiku.dataBaseArray);
@@ -41,7 +41,7 @@ const HaikuGenerator = () => {
 
   const generateNewHaiku = async (e) => {
     console.log("GENERATE");
-    fetch(`https://murmuring-ravine-33143.herokuapp.com/randomHaiku/${haikuDataBaseName}`)
+    fetch(`https://murmuring-ravine-33143.herokuapp.com/db/randomHaiku/${haikuDataBaseName}`)
       .then((res) => res.json())
       .then((randomHaiku) => {
         setGeneratedHaiku(randomHaiku.dataBaseArray);

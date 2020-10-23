@@ -27,7 +27,7 @@ useEffect(() => {
 
 useEffect(()=>{
     console.log(haikuDataBaseName)
-    fetch(`https://murmuring-ravine-33143.herokuapp.com/dbInfo/${haikuDataBaseName}`)
+    fetch(`https://murmuring-ravine-33143.herokuapp.com/db/${haikuDataBaseName}`)
       .then((res) => res.json())
       .then((data) => {
       console.log(data)
@@ -57,7 +57,7 @@ const handleUndo = (verse, index)=>{
 
 const submitDelete =()=>{
     if(deletedArray.length >0){
-    fetch(`https://murmuring-ravine-33143.herokuapp.com/delete/${haikuDataBaseName}`, {
+    fetch(`https://murmuring-ravine-33143.herokuapp.com/db/delete/${haikuDataBaseName}`, {
         method: "DELETE",
         headers: {
           "content-type": "application/json",
