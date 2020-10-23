@@ -8,7 +8,7 @@ const HaikuDataBaseProvider = ({ children }) => {
   const [haikuDataBaseName, setHaikuDataBaseName] = useState("");
   const [haikuArray, setHaikuArray] = useState([]);
   const [haikuDb, setHaikuDb] = useState({});
-  //const [urlTitle, setUrlTitle] = useRemoveSpace(haikuDataBaseName);
+  //const [haikuDataBaseName, setHaikuDataBaseName] = useRemoveSpace("");
   const [alert, setAlert] = useState(false);
 
   const saveContent = (haikuDataBaseName) => {
@@ -26,9 +26,10 @@ const HaikuDataBaseProvider = ({ children }) => {
     e.stopPropagation();
     e.preventDefault();
     //setUrlTitle(urlTitle);
+    //https://murmuring-ravine-33143.herokuapp.com
 
     if (haikuArray.length >= 2) {
-      fetch("https://murmuring-ravine-33143.herokuapp.com/createHaikus", {
+      fetch(`https://murmuring-ravine-33143.herokuapp.com/createHaikus/${haikuDataBaseName}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

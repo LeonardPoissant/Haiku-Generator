@@ -11,7 +11,7 @@ import { HaikuContext } from "../HaikuContext/HaikuDataBaseContext";
 
 const ManageDb = () =>{
 let history = useHistory();
-const { urlTitle } = useContext(HaikuContext);
+const { haikuDataBaseName, setHaikuDataBaseName } = useContext(HaikuContext);
 
 const [dataBaseName, setDataBaseName] = useState("");
 const [array, setArray] = useState([]);
@@ -20,9 +20,14 @@ const [isClicked, setIsClicked] = useState({});
 const [isDeleted, setIsDeleted] = useState(false)
 
 
+useEffect(() => {
+    setHaikuDataBaseName(sessionStorage.getItem("haikuDataBaseName"));
+  }, []);
+
 
 useEffect(()=>{
-    fetch(`https://murmuring-ravine-33143.herokuapp.com/dbInfo/${urlTitle}`)
+    console.log(haikuDataBaseName)
+    fetch(`https://murmuring-ravine-33143.herokuapp.com/dbInfo/${haikuDataBaseName}`)
       .then((res) => res.json())
       .then((data) => {
       console.log(data)
@@ -30,7 +35,7 @@ useEffect(()=>{
       setArray(data.haikuArray)
       });
       console.log(isDeleted)
-},[isDeleted]);
+},[haikuDataBaseName]);
 
 const handleDelete =(verse, index)=>{
     setIsClicked(prevState => ({
@@ -52,7 +57,7 @@ const handleUndo = (verse, index)=>{
 
 const submitDelete =()=>{
     if(deletedArray.length >0){
-    fetch(`https://murmuring-ravine-33143.herokuapp.com/delete/${urlTitle}`, {
+    fetch(`https://murmuring-ravine-33143.herokuapp.com/delete/${haikuDataBaseName}`, {
         method: "DELETE",
         headers: {
           "content-type": "application/json",
@@ -71,7 +76,7 @@ const submitDelete =()=>{
         .catch((err) => {
           console.log(err);
         })
-        history.push(`/Generate/${urlTitle}`)
+        history.push(`/Generate/${haikuDataBaseName}`)
     } else{
         console.log("nothing to delete")
     }
@@ -79,7 +84,7 @@ const submitDelete =()=>{
 
 return(
     <>
-    <Title>{dataBaseName}</Title>
+    <Title>{haikuDataBaseName}</Title>
     <ButtonWrapper>
     <SubmitDeletion onClick={(e)=>submitDelete()}>CONFIRM</SubmitDeletion>
 </ButtonWrapper>

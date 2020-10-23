@@ -26,6 +26,8 @@ const CreateHaikuDatabase = () => {
     setHaikuDataBaseName(sessionStorage.getItem("haikuDataBaseName"));
   }, []);
 
+  console.log(haikuDataBaseName)
+
   useEffect(() => {
     if (isTrue) {
       history.push(`/Generate/${haikuDataBaseName}`);
@@ -41,18 +43,11 @@ const CreateHaikuDatabase = () => {
     }
   };
 
-  const handleStop = (e, data) => {
-    if (data.y > 125) {
-    }
-  };
-
   return (
     <Wrapper>
-    
       <ToDataBase to={`/ManageDb/${haikuDataBaseName}`}>
-      <DbName>{haikuDataBaseName}</DbName>
+        <DbName>{haikuDataBaseName}</DbName>
       </ToDataBase>
-    
       <Instructions>Click on your database's name to edit it</Instructions>
       <HaikuDataBaseForm onSubmit={(e) => handleCreateHaikuDatabase(e)}>
         <InputsWrapper>
@@ -72,9 +67,7 @@ const CreateHaikuDatabase = () => {
           different verses.
           <MobileInstructions>Swipe the arrow up to generate a haiku.</MobileInstructions>
         </Instructions>
-         
         <Button type="submit" variant="contained" color="primary" >Submit Verse</Button>
-        
       </HaikuDataBaseForm>
       <DraggableDiv>
         <Draggable

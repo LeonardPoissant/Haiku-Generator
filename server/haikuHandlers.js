@@ -14,27 +14,27 @@ const createHaikuDB = async (req, res) => {
   });
 
   const haikuDataBase = req.body;
-  const haikuDataBaseName = haikuDataBase.urlTitle;
+  const {id} = req.params;
+
+  console.log(haikuDataBase)
   const haikuString = haikuDataBase.haikuArray;
   let haikuArray = [];
   haikuArray.push(haikuString);
 
-  console.log("here")
-
   try {
     await client.connect();
-    const db = client.db(haikuDataBaseName);
+    const db = client.db(id);
     const createDB = await db
       .collection("Haiku")
       .updateOne(
-        { haikuDataBaseName: haikuDataBaseName },
+        { haikuDataBaseName: id },
         { $push: { haikuArray: haikuString } },
         { upsert: true }
       );
     client.close();
     res.status(201).json({
       status: 201,
-      _id: haikuDataBaseName,
+      _id: id,
       haikuDataBase: haikuDataBase,
     });
   } catch (err) {
@@ -131,8 +131,9 @@ const deleteVerses = async (req, res)=>{
     useNewUrlParser: true,
   });
 
-  const {id } = req.params
+  const { id } = req.params
   const data = req.body;
+  console.log('DATA',data)
   const deletedArray = data[Object.keys(data)[0]]
   try {
     await client.connect();
