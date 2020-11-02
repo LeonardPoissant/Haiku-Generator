@@ -8,7 +8,7 @@ The requierements were to make a generator where users could create their own da
 
 ![Alt text](client/public/FIGMA.png)
 
-The app needed to be accessible to anyone who wanted to play around with it, so I made the API public, instructions are below.
+The app needed to be accessible to anyone who wanted to play around with it, so I made the API public, instructions are below. fd
 
 That version of the app is available here: https://toolzbox.herokuapp.com/
 
